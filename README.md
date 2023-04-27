@@ -4,8 +4,8 @@ This is an image filtering app created using the Python language that consists o
 
 # Prerequisites
 
-Python 3
-OpenCV
+Python 3\n
+OpenCV\n
 Streamlit
 Numpy
 Pillow
