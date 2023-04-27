@@ -4,10 +4,14 @@ This is an image filtering app created using the Python language that consists o
 
 # Prerequisites
 
-Python 3\n
-OpenCV\n
+Python 3
+
+OpenCV
+
 Streamlit
+
 Numpy
+
 Pillow
 
 
