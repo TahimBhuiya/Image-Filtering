@@ -45,27 +45,32 @@ if uploaded_file is not None:
 
  
 
-    # Define a list of filter names
-    filter_names = ["Grayscale", "Blur", "Canny", "Sobel", "Invert","Cartoon","Normal Pencil Sketch","Colored Pencil Sketch","Red","Blue","Green","Yellow","Magenta","Turquoise"]
-
-    # Add radio buttons for selecting a filter
+    # List of all available filter options for the user to choose from
+    filter_names = [
+        "Grayscale", "Blur", "Canny", "Sobel", "Invert",
+        "Cartoon", "Normal Pencil Sketch", "Colored Pencil Sketch",
+        "Red", "Blue", "Green", "Yellow", "Magenta", "Turquoise"
+    ]
+    
+    # Sidebar radio buttons to allow the user to select one filter from the list
     filter_choice = st.sidebar.radio("Select a filter", filter_names)
-
-    # Add intensity slider for the Blur filter
+    
+    # If the selected filter is 'Blur', provide a slider to control blur intensity
+    # For all other filters, intensity is set to zero (not used)
     if filter_choice == "Blur":
         intensity = st.sidebar.slider("Blur Intensity", min_value=0, max_value=30, step=1, value=5)
     else:
         intensity = 0
-
-    # Apply the selected filter to the image
+    
+    # Apply the selected filter with the specified intensity to the uploaded image
     filtered_img = apply_filter(filter_choice, img, intensity)
     
-    
-#Define a function to save the image
+    # Function to save the filtered image to the 'Output_Folder' directory
     def save_image(image, filename):
         filepath = f'Output_Folder/{filename}'
-        image.save(filepath)
-        st.success(f'Saved {filename} to {filepath}')
+        image.save(filepath)  # Save the PIL Image object to disk
+        st.success(f'Saved {filename} to {filepath}')  # Notify user of successful save
+
     
     
     
