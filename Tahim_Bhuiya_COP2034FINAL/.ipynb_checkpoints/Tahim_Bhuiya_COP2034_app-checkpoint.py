@@ -19,18 +19,30 @@ st.title('05/03/2023')                    # Submission date
 
 
 
-#Add sidebar with info
-#Adding a text in the sidebar
-st.sidebar.title('Image Filtering Web Application') #title
-with st.sidebar.expander("Web App Description"): #add expander for description
-    st.write("This image filtering application will be utilized to help pick and choose how you would like to filter your uploaded images with the filter options given after uploading!! If you would like to download the filtered image, you will also be given the option to do so!! Note that this app only accpets 'jpg, 'jpeg', and 'png' files!!") #App description!!!
-    
-uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"]) #file uploader with the type being specified for image type files.
+# Add a sidebar section for app information and controls
+st.sidebar.title('Image Filtering Web Application')  # Sidebar title
+
+# Create an expandable section in the sidebar to display app description
+with st.sidebar.expander("Web App Description"):
+    st.write(
+        "This image filtering application allows you to upload an image and choose from various filters to apply. "
+        "After applying a filter, you can download the filtered image if desired. "
+        "Supported file formats are 'jpg', 'jpeg', and 'png'."
+    )
+
+# File uploader widget to allow users to upload images of specific types
+uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+
 if uploaded_file is not None:
-    # Read the image using OpenCV
+    # Convert the uploaded file to a numpy array of bytes
     file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+
+    # Decode the image bytes into an OpenCV image (BGR format)
     img = cv2.imdecode(file_bytes, 1)
-    img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+
+    # Convert the OpenCV image from BGR to RGB color format for proper display
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
  
 
     # Define a list of filter names
