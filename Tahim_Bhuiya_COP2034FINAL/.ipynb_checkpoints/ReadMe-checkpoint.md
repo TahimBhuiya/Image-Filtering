@@ -1,38 +1,90 @@
-# Image Filtering App Made with Streamlit
 
-This is an image filtering app created using the Python language that consists of help with several diffeent modules and libraries. The app allows for the user to upload a file, which must be a 'JPG','JPEG', or a 'PNG' file. After the image is uploaded by the user, there are several different filter options that are provided for the user to choose from (14 filters total). The original image is displayed under the file uploader on the left-hand side of the page. The newly created filtered imaged is displayed to right of the original image and has a caption referring to which filter was applied to the image. Under the filtered image lies a 'Download Filtered Image' button that will can be used if the user wishes to save and download the filtered version of the uploaded image.
+# 🖼️ Image Filtering App using Streamlit
 
-# Prerequisites
+This is a simple and interactive image filtering web application built with **Python** and **Streamlit**. The app allows users to upload images (`.jpg`, `.jpeg`, or `.png`) and apply one of **14 different filters** to the uploaded image. After selecting a filter, the app displays the **original image** on the left and the **filtered version** on the right. Users can also **download** the filtered image with a single click.
 
-Python 3
-OpenCV
-Streamlit
-Numpy
-Pillow
+---
 
+## ✅ Features
 
-# Running the Appication
+- Upload image files (`.jpg`, `.jpeg`, `.png`)
+- Apply 14 different image filters including:
+  - Grayscale
+  - Blur (with intensity control)
+  - Canny, Sobel, Invert
+  - Stylized (Cartoon, Pencil Sketches)
+  - Color isolation filters (Red, Green, Blue, Yellow, Magenta, Turquoise)
+- View original and filtered images side-by-side
+- Download the filtered image directly
 
-In order to run this application, the user has to download the required libraries that were listed in the prerequisites. Next, the contents of the 'Tahim_Bhuiya_COP2034_app.py' file will need to be saved as well as the 'filters.py' file which are extremely crucial for the funcionality of this app as the 'Tahim_Bhuiya_COP2034_app.py' is the main file for running the streamlit app and the 'filters.py' file contains all of the filters for the app. The user will then have to open up the terminal and find their way to the directory where the file is saved and run the followng code: 
+---
 
-'streamlit run Tahim_Bhuiya_COP2034_app.py'
+## 📦 Prerequisites
 
-if the user saved the contents of 'Tahim_Bhuiya_COP2034_app.py' to another .py file, then they would run a similar code but replace the file name with whatever file name the user gave the new .py file:
+Make sure you have **Python 3** installed, along with the following libraries:
 
-'streamlit run filename.py'
+- `opencv-python`
+- `streamlit`
+- `numpy`
+- `Pillow`
 
-The page may automatically open up in the user's browser or a URL will be given to transition to the running app.
+You can install them using pip:
 
-# How to Use the App Once Up and Running
+```bash
+pip install opencv-python streamlit numpy Pillow
+```
 
-Once the app is open in the browser, the user will finally be able to use the app to their liking by following the steps below:
-1. Upload a 'JPG','JPEG', or a 'PNG' image file by clicking on the image uploader in the middle of the page under the creator's name, project, and date. If the user simply wants to try the app out, there are several sample images in the 'Images_Folder' folder.
-2. Select which filter the user would like to use on the left sidebar using the radio button located beneath the app description.
-3. Certain filters, such as the 'Blur' filter have the option to change the intensity at which the filter operates with the use of a slider ranging from 0-30 in intensity. Adjust this to your liking.
-4. The filtered image will be displayed alongside the original image under the file uploader with captions allowing for the user to differentiate between the original and the newly filtered image. The filtered image is on the right side and the original image is on the left side.
-5. Below the filtered image, there is a 'Download Filtered Image' button that can be used to download the new image if the user would like to do so. This image will be downloaded in the 'Output_Folder' folder which is within the same folder of your other files.
-6. The user could do this with as many photos as they would like but each photo will be filtered one at a time.
+---
 
+## ▶️ Running the Application
 
-# Creators of App
-This app was created by Tahim Bhuiya as a part of a final project for COP2034
+1. Save the two necessary Python files:
+   - `Tahim_Bhuiya_COP2034_app.py` (main Streamlit app)
+   - `filters.py` (contains the filter logic)
+
+2. Open a terminal or command prompt.
+
+3. Navigate to the directory where the files are saved.
+
+4. Run the Streamlit app:
+
+```bash
+streamlit run Tahim_Bhuiya_COP2034_app.py
+```
+
+> 🔁 If you renamed the main file, replace the filename accordingly:
+
+```bash
+streamlit run your_filename.py
+```
+
+Once executed, the app should open in your browser automatically. If not, Streamlit will provide a local URL that you can paste into your browser.
+
+---
+
+## 🧠 How to Use the App
+
+1. **Upload an Image**  
+   Click the uploader in the middle of the page and select a `.jpg`, `.jpeg`, or `.png` file.  
+   (Sample images are available in the `Images_Folder` directory, if provided.)
+
+2. **Choose a Filter**  
+   Use the sidebar on the left to select a filter from the list using the radio buttons.
+
+3. **Adjust Filter Intensity (Optional)**  
+   If you select the **Blur** filter, an intensity slider will appear (range: 0–30). Adjust it as desired.
+
+4. **View Results**  
+   The original image will be shown on the left, and the filtered image on the right, both labeled accordingly.
+
+5. **Download Filtered Image**  
+   Below the filtered image, click the **"Download Filtered Image"** button. The image will be saved to the `Output_Folder`.
+
+6. **Repeat**  
+   You can upload and filter as many images as you'd like — one at a time.
+
+---
+
+## 👨‍💻 Creator
+
+This app was developed by **Tahim Bhuiya** as a final project for the course **COP2034**.
