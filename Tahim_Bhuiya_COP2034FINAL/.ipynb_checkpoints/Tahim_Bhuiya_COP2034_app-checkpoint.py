@@ -75,17 +75,21 @@ if uploaded_file is not None:
     
     
     
-    left_colu, right_colu = st.columns(2) #will be used to have the download button under the filtered image
-
-# Display the first image in the left column
+    # Create two equal-width columns for displaying images side-by-side
+    left_colu, right_colu = st.columns(2)  
+    
+    # Display the original uploaded image in the left column with caption
     with left_colu:
-        st.image([img],caption=["Original"], use_column_width=True)
-
-# Display the second image in the right column
+        st.image([img], caption=["Original"], use_column_width=True)
+    
+    # Display the filtered image in the right column with caption of the filter applied
     with right_colu:
-        st.image([filtered_img],caption=[filter_choice], use_column_width=True)
-    # Add a button under the second image
+        st.image([filtered_img], caption=[filter_choice], use_column_width=True)
+    
+        # Provide a button below the filtered image to allow the user to download it
         if st.button("Download Filtered Image"):
+            # Convert the filtered NumPy image array back to a PIL Image for saving
             filtered_pil = Image.fromarray(filtered_img)
-            save_image(filtered_pil, f'{filter_choice}_{uploaded_file.name}.png') #calling the save_image fucntion and pplying to the selected filtered image
-            #created the correct file name which will help identify which photo is which
+            # Save the filtered image with a descriptive filename including filter name and original filename
+            save_image(filtered_pil, f'{filter_choice}_{uploaded_file.name}.png')
+
