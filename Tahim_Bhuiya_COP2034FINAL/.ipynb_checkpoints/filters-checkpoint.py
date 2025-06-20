@@ -27,14 +27,30 @@ def apply_filter(filter_name, img, intensity):
 
     
         elif filter_name == "Sobel":
-            img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-            img = cv2.Sobel(img, cv2.CV_8U, 1, 0, ksize=3) #uses sobel
+            # Convert image from BGR to RGB before applying Sobel filter
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+            # Apply the Sobel filter to detect edges in the horizontal (x) direction
+            # cv2.CV_8U specifies the output image depth
+            # dx=1, dy=0 applies the derivative in the x-direction only
+            img = cv2.Sobel(img, cv2.CV_8U, 1, 0, ksize=3)
+
         elif filter_name == "Invert":
-            img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-            img=img.copy() #inverting the images colors
+            # Convert image from BGR to RGB before inverting colors
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+            # Create a copy of the image to avoid modifying the original
+            img = img.copy()
+
+            # Invert each color channel manually by subtracting from 255
             for i in range(3):
-                img[:,:,i]=255-img[:,:,i]
-            # img = cv2.bitwise_not(img) could've also been used here.
+                img[:, :, i] = 255 - img[:, :, i]
+
+            # Note: The same effect could also be achieved using:
+            # img = cv2.bitwise_not(img)
+
+
+    
         elif filter_name == "Red":
             img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB) #making red filter
             img=img.copy()
