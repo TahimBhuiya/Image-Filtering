@@ -145,10 +145,25 @@ def apply_filter(filter_name, img, intensity):
             # Cartoon effect inspired by technique referenced from 'Final Project Supporting Material'
 
             
-        elif filter_name=="Normal Pencil Sketch":
-            img,cartoon_image2  = cv2.pencilSketch(img, sigma_s=60, sigma_r=0.5, shade_factor=0.02)   #making pencil sketch filter with aid of provided website in 'Final Project Supporting Material'
-            
-        elif filter_name=="Colored Pencil Sketch":
-            cartoon_image1,img  = cv2.pencilSketch(img, sigma_s=60, sigma_r=0.5, shade_factor=0.02)   #making colored pencil sketch filter with aid of provided website in 'Final Project Supporting Material'
-            
-        return img #returning img no matter which filter is being used and will be displayed to the user
+        elif filter_name == "Normal Pencil Sketch":
+            # Apply OpenCV's pencilSketch filter to generate a grayscale pencil sketch effect
+            # sigma_s controls the size of the neighborhood, sigma_r controls the range sensitivity,
+            # and shade_factor adjusts the shading intensity
+            # The first output is the pencil sketch (grayscale), the second is the color sketch
+            img, cartoon_image2 = cv2.pencilSketch(
+                img, sigma_s=60, sigma_r=0.5, shade_factor=0.02
+            )
+
+            # Using the normal (grayscale) pencil sketch output
+
+        elif filter_name == "Colored Pencil Sketch":
+            # Apply OpenCV's pencilSketch filter to generate a color pencil sketch effect
+            # This time we use the second output (color sketch) and discard the grayscale one
+            cartoon_image1, img = cv2.pencilSketch(
+                img, sigma_s=60, sigma_r=0.5, shade_factor=0.02
+            )
+
+            # Using the colored pencil sketch output
+
+        return img  # Return the filtered image to be displayed to the user, regardless of the selected filter
+
