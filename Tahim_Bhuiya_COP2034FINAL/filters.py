@@ -9,7 +9,6 @@ def apply_filter(filter_name, img, intensity):
         # Convert the RGB image to grayscale
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-
         elif filter_name == "Blur":
             # Apply Gaussian blur to the image
             # The kernel size is calculated based on the intensity value: it must be odd, so we use (intensity * 2 + 1)
@@ -23,8 +22,6 @@ def apply_filter(filter_name, img, intensity):
             # Apply Canny edge detection with fixed threshold values (100 for lower, 200 for upper)
             # This highlights edges and outlines in the image
             img = cv2.Canny(img, 100, 200)
-
-
     
         elif filter_name == "Sobel":
             # Convert image from BGR to RGB before applying Sobel filter
@@ -48,8 +45,6 @@ def apply_filter(filter_name, img, intensity):
 
             # Note: The same effect could also be achieved using:
             # img = cv2.bitwise_not(img)
-
-
     
         elif filter_name == "Red":
             # Convert image from BGR to RGB format
@@ -69,9 +64,7 @@ def apply_filter(filter_name, img, intensity):
             img = img.copy()
 
             # Set the Red and Green channels to 0, keeping only the Blue channel active
-            img[:, :, 0:2] = 0  # Produces a blue-tinted image
-
-            
+            img[:, :, 0:2] = 0  # Produces a blue-tinted image     
             
         elif filter_name == "Green":
             # Convert image from BGR to RGB format
@@ -92,9 +85,6 @@ def apply_filter(filter_name, img, intensity):
 
             # Set the Blue channel (index 2) to 0, leaving Red and Green active to produce yellow
             img[:, :, 2:3] = 0  # Produces a yellow-tinted image (Red + Green)
-
-
-    
             
         elif filter_name == "Magenta":
             # Convert image from BGR to RGB format
@@ -118,7 +108,6 @@ def apply_filter(filter_name, img, intensity):
             # This results in a turquoise/cyan-tinted image (Green + Blue)
             img[:, :, 0:1] = 0  # Produces a turquoise filter
 
-            
         
         elif filter_name == "Cartoon":
             # Convert the original image to grayscale
