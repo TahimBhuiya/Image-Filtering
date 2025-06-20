@@ -1,9 +1,16 @@
-import cv2  #using cv2 to create out filters
-# Define a function to apply filters to the image
-def apply_filter(filter_name, img, intensity):     
-        if filter_name == "Grayscale":
-            img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)  
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)#grayscale use
+import cv2  # Import the OpenCV library for image processing
+
+# Define a function to apply a specified filter to an image with a given intensity
+def apply_filter(filter_name, img, intensity):
+    if filter_name == "Grayscale":
+        # Convert the image from BGR (OpenCV default) to RGB for consistency
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        
+        # Convert the RGB image to grayscale
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+
+    
         elif filter_name == "Blur":
             img = cv2.GaussianBlur(img, (int(intensity)*2+1, int(intensity)*2+1), 0) #using GaussianBlur to blur the image given and will be provided with an intensity setter which is in the main file
         elif filter_name == "Canny":
