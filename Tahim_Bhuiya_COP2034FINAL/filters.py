@@ -52,14 +52,25 @@ def apply_filter(filter_name, img, intensity):
 
     
         elif filter_name == "Red":
-            img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB) #making red filter
-            img=img.copy()
-            img[::,::,1:3]=0
+            # Convert image from BGR to RGB format
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+            # Create a copy of the image to avoid modifying the original
+            img = img.copy()
+
+            # Set the Green and Blue channels to 0, keeping only the Red channel active
+            img[:, :, 1:3] = 0  # Produces a red-tinted image
 
         elif filter_name == "Blue":
-            img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-            img=img.copy()
-            img[::,::,0:2]=0  #making blue filter
+            # Convert image from BGR to RGB format
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+            # Create a copy of the image to avoid modifying the original
+            img = img.copy()
+
+            # Set the Red and Green channels to 0, keeping only the Blue channel active
+            img[:, :, 0:2] = 0  # Produces a blue-tinted image
+
             
             
         elif filter_name == "Green":
