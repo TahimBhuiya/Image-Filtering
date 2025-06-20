@@ -10,12 +10,22 @@ def apply_filter(filter_name, img, intensity):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 
-    
         elif filter_name == "Blur":
-            img = cv2.GaussianBlur(img, (int(intensity)*2+1, int(intensity)*2+1), 0) #using GaussianBlur to blur the image given and will be provided with an intensity setter which is in the main file
+            # Apply Gaussian blur to the image
+            # The kernel size is calculated based on the intensity value: it must be odd, so we use (intensity * 2 + 1)
+            # A higher intensity results in a stronger blur effect
+            img = cv2.GaussianBlur(img, (int(intensity)*2 + 1, int(intensity)*2 + 1), 0)
+
         elif filter_name == "Canny":
-            img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-            img = cv2.Canny(img, 100, 200)  #uses canny
+            # Convert image from BGR to RGB before edge detection for consistency
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+            # Apply Canny edge detection with fixed threshold values (100 for lower, 200 for upper)
+            # This highlights edges and outlines in the image
+            img = cv2.Canny(img, 100, 200)
+
+
+    
         elif filter_name == "Sobel":
             img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
             img = cv2.Sobel(img, cv2.CV_8U, 1, 0, ksize=3) #uses sobel
