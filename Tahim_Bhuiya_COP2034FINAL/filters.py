@@ -97,14 +97,28 @@ def apply_filter(filter_name, img, intensity):
     
             
         elif filter_name == "Magenta":
-            img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-            img=img.copy()
-            img[::,::,1:2]=0  #making magenta filter
-            
+            # Convert image from BGR to RGB format
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+            # Create a copy to avoid modifying the original image
+            img = img.copy()
+
+            # Set the Green channel (index 1) to 0, keeping Red and Blue active
+            # This results in a magenta-tinted image (Red + Blue)
+            img[:, :, 1:2] = 0  # Produces a magenta filter
+
         elif filter_name == "Turquoise":
-            img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-            img=img.copy()
-            img[::,::,0:1]=0  #making Turquoise filter
+            # Convert image from BGR to RGB format
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+            # Create a copy to avoid modifying the original image
+            img = img.copy()
+
+            # Set the Red channel (index 0) to 0, keeping Green and Blue active
+            # This results in a turquoise/cyan-tinted image (Green + Blue)
+            img[:, :, 0:1] = 0  # Produces a turquoise filter
+
+            
         
         elif filter_name == "Cartoon":
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
