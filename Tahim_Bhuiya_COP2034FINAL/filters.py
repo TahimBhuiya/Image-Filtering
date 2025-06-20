@@ -74,14 +74,27 @@ def apply_filter(filter_name, img, intensity):
             
             
         elif filter_name == "Green":
-            img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-            img=img.copy()
-            img[::,:,[0,2]] = 0  #making green filter
-            
+            # Convert image from BGR to RGB format
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+            # Create a copy to preserve the original image
+            img = img.copy()
+
+            # Set the Red (0) and Blue (2) channels to 0, keeping only the Green channel active
+            img[:, :, [0, 2]] = 0  # Produces a green-tinted image
+
         elif filter_name == "Yellow":
-            img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-            img=img.copy()
-            img[::,::,2:3]=0  #making yellow filter
+            # Convert image from BGR to RGB format
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+            # Create a copy to preserve the original image
+            img = img.copy()
+
+            # Set the Blue channel (index 2) to 0, leaving Red and Green active to produce yellow
+            img[:, :, 2:3] = 0  # Produces a yellow-tinted image (Red + Green)
+
+
+    
             
         elif filter_name == "Magenta":
             img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
