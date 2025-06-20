@@ -121,11 +121,29 @@ def apply_filter(filter_name, img, intensity):
             
         
         elif filter_name == "Cartoon":
+            # Convert the original image to grayscale
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+            # Apply median blur to reduce image noise
             gray = cv2.medianBlur(gray, 5)
-            edges = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 9, 9)
-            color = cv2.bilateralFilter(img, 9, 250, 250)
-            img = cv2.bitwise_and(color, color, mask=edges)  #making cartoon filter with aid of provided website in 'Final Project Supporting Material'
+
+            # Detect edges using adaptive thresholding
+            edges = cv2.adaptiveThreshold(
+                gray, 255,
+                cv2.ADAPTIVE_THRESH_MEAN_C,
+                cv2.THRESH_BINARY,
+                blockSize=9,
+                C=9
+            )
+
+            # Apply bilateral filter to smooth colors while preserving edges
+            color = cv2.bilateralFilter(img, d=9, sigmaColor=250, sigmaSpace=250)
+
+            # Combine the smoothed color image with the detected edges to produce a cartoon effect
+            img = cv2.bitwise_and(color, color, mask=edges)
+
+            # Cartoon effect inspired by technique referenced from 'Final Project Supporting Material'
+
             
         elif filter_name=="Normal Pencil Sketch":
             img,cartoon_image2  = cv2.pencilSketch(img, sigma_s=60, sigma_r=0.5, shade_factor=0.02)   #making pencil sketch filter with aid of provided website in 'Final Project Supporting Material'
